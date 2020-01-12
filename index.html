@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+   <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <title>solarSelect</title>
+</head>
+<body class="text-center text-white h-100">
+  <div class="container cs" class="">
+    <div class="row">
+              <div class="col-md-4 mb-3">
+                <label >سال تولد</label>
+                <select class="custom-select d-block w-100" id="khorshid-year">
+                  <!-- filled with JS / accessed within id -->
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label>ماه</label>
+                <select class="custom-select d-block w-100" id="khorshid-month">
+                  <!-- filled with JS / accessed within id -->
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label>روز</label>
+                <select class="custom-select d-block w-100" id="khorshid-day">
+                  <!-- filled with JS / accessed within id -->
+                </select>
+              </div>
+            </div>
+  </div>
+  <!-- jQuery  -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- Khorshid Calendar -->
+  <script src="js/solarSelect-1.0.js"></script>
+  <!-- Khorshid Calendar -->
+  <script type="text/javascript">
+  $(document).ready(function() { 
+      solarSelect.init({  // or simply solarSelect.init();
+        startYear : 1300,
+        endYear : 1398,
+        months : ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
+        yearsSelectId : "#khorshid-year",
+        monthsSelectId : "#khorshid-month",
+        daysSelectId : "#khorshid-day"
+      });
+  });
+  </script>
+</body>
+</html>
