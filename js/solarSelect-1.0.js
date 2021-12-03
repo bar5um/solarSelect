@@ -1,22 +1,22 @@
 /*
- * solarSelect v1.0.0
+ * solarSelect v2.0.0
  *
  * http://github.com/bar5um/persianDatepicker/
  *
- * Copyright (c) 2020 Bar5um | All rights reserved.
+ * Copyright (c) 2021 Bar5um | All rights reserved.
  *
  * Released under the MIT license.
  *
- * Date: Mon Jan 13 2020
+ * Date: Fri Dec 3 2021
 */
 var solarSelect = {
         atts: {
                 startYear: 1300,
                 endYear: 1398,
                 months: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
-                yearsSelectId: "#khorshid-year",
-                monthsSelectId: "#khorshid-month",
-                daysSelectId: "#khorshid-day"
+                yearsSelectId: "khorshid-year",
+                monthsSelectId: "khorshid-month",
+                daysSelectId: "khorshid-day"
         },
         isLeapYear(year) {
                 var ary = [0, 4, 8, 12, 16, 20, 24, 29, 33, 37, 41, 45, 49, 53, 57, 62, 66, 70, 74, 78, 82, 86, 90, 95, 99, 103, 107, 111, 115, 119];
@@ -27,22 +27,23 @@ var solarSelect = {
                 return false;
         },
         updateDays() {
-                selectedYear = $(this.atts.yearsSelectId).val();
-                selectedMonth = $(this.atts.monthsSelectId).children("option:selected").val();
-                $(this.atts.daysSelectId).html("");
+                selectedYear = document.getElementById(this.atts.yearsSelectId).value;
+                selectedMonth = document.getElementById(this.atts.monthsSelectId).value;
+                daysInput = document.getElementById(this.atts.daysSelectId);
+                daysInput.innerHTML = '';
 
                 if (selectedMonth == 12 && this.isLeapYear(selectedYear)) {
                         for (i = 1; i <= 30; i++)
-                                $(this.atts.daysSelectId).append("<option value='" + i + "'>" + i + "</option>>");
+                                daysInput.innerHTML += "<option value='" + i + "'>" + i + "</option>>";
                 } else if (selectedMonth == 12) {
                         for (i = 1; i <= 29; i++)
-                                $(this.atts.daysSelectId).append("<option value='" + i + "'>" + i + "</option>>");
+                                daysInput.innerHTML += "<option value='" + i + "'>" + i + "</option>>";
                 } else if (selectedMonth > 6) {
                         for (i = 1; i <= 30; i++)
-                                $(this.atts.daysSelectId).append("<option value='" + i + "'>" + i + "</option>>");
+                                daysInput.innerHTML += "<option value='" + i + "'>" + i + "</option>>";
                 } else if (selectedMonth < 7) {
                         for (i = 1; i <= 31; i++)
-                                $(this.atts.daysSelectId).append("<option value='" + i + "'>" + i + "</option>>");
+                                daysInput.innerHTML += "<option value='" + i + "'>" + i + "</option>>";
                 }
         },
         printYears() {
@@ -66,12 +67,7 @@ var solarSelect = {
                 this.printMonths();
                 this.updateDays();
                 var self = this;
-                $(this.atts.monthsSelectId).change(function() {
-                        self.updateDays();
-                });
-
-                $(this.atts.yearsSelectId).change(function() {
-                        self.updateDays();
-                });
+                document.getElementById(this.atts.monthsSelectId).addEventListener("change", function(){self.updateDays()});
+                document.getElementById(this.atts.yearsSelectId).addEventListener("change", function(){self.updateDays()});
         }
 };
